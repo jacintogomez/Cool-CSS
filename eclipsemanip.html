@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eclipse</title>
+</head>
+<style>
+    body{
+        margin: 0;
+    }
+    /**{*/
+    /*    animation: 5s ease-out;*/
+    /*}*/
+    .sky{
+        width: 100vw;
+        height: 100vh;
+        background-color: skyblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: 5s ease-out;
+        animation-name: animate-sky-in;
+        position: relative;
+        overflow: hidden;
+    }
+    .sun, .moon{
+        position: absolute;
+        width: 50vmin;
+        height: 50vmin;
+        border-radius: 50%;
+    }
+    .sun{
+        background-color: gold;
+        animation: 5s ease-out;
+        animation-name: animate-sun-in;
+    }
+    .moon{
+        background-color: slategray;
+        animation: 5s ease-out;
+        animation-name: animate-moon-in;
+    }
+    @keyframes animate-sky-in{
+        from{
+            background-color: skyblue;
+        }
+        50%{
+            background-color: skyblue;
+        }
+        to{
+            background-color: black;
+        }
+    }
+    @keyframes animate-sky-out{
+        from{
+            background-color: black;
+        }
+        50%{
+            background-color: skyblue;
+        }
+        to{
+            background-color: skyblue;
+        }
+    }
+    @keyframes animate-sun-in{
+        from{
+            box-shadow: none;
+        }
+        to{
+            box-shadow: 0 0 5em 1em white;
+        }
+    }
+    @keyframes animate-sun-out{
+        from{
+            box-shadow: 0 0 5em 1em white;
+        }
+        to{
+            box-shadow: none;
+        }
+    }
+    @keyframes animate-moon-in{
+        from{
+            background-color: slategray;
+            transform: translateX(-100vmin);
+        }
+        50%{
+            background-color: slategray;
+        }
+        to{
+            background-color: black;
+            transform: translateX(0);
+        }
+    }
+    @keyframes animate-moon-out{
+        from{
+            background-color: black;
+            transform: translateX(0);
+        }
+        50%{
+            background-color: slategray;
+        }
+        to{
+            background-color: slategray;
+            transform: translateX(100vmin);
+        }
+    }
+</style>
+<body>
+    <button id="start">button</button>
+    <div id="sky" class="sky">
+        <div id="sun" class="sun"></div>
+        <div id="moon" class="moon"></div>
+    </div>
+    <script>
+        var elements=[
+            document.getElementById('sky'),
+            document.getElementById('sun'),
+            document.getElementById('moon')
+        ];
+        let first=true;
+        let moon=document.getElementById('moon');
+        let sun=document.getElementById('sun');
+        let sky=document.getElementById('sky');
+        function half1(els){
+            els.forEach(function(element){
+                element.style.animation='5s ease-out';
+                element.style.animationName='animate-'+element.id+'-out';
+            });
+            moon.style.backgroundColor='black';
+            sky.style.backgroundColor='black';
+        }
+        function half2(els){
+            els.forEach(function(element){
+                element.style.animation='5s ease-in';
+                element.style.animationName='animate-'+element.id+'-in';
+            });
+            moon.style.backgroundColor='slategray';
+            sky.style.backgroundColor='skyblue';
+        }
+        function toggleanimation(){
+            if(first){
+                half1(elements);
+            }else{
+                half2(elements);
+            }
+            first=!first;
+        }
+        document.getElementById('start').addEventListener('click',function(){
+            toggleanimation();
+        });
+    </script>
+</body>
+</html>
