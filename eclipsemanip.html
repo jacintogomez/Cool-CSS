@@ -19,7 +19,7 @@
         align-items: center;
         justify-content: center;
         animation: none;
-        animation-name: animate-sky-in;
+        animation-name: none;
         position: relative;
         overflow: hidden;
     }
@@ -32,12 +32,12 @@
     .sun{
         background-color: gold;
         animation: none;
-        animation-name: animate-sun-in;
+        animation-name: none;
     }
     .moon{
         background-color: slategray;
         animation: none;
-        animation-name: animate-moon-in;
+        animation-name: none;
         visibility: hidden;
     }
     @keyframes animate-sky-in{
@@ -123,7 +123,7 @@
         let sky=document.getElementById('sky');
         function half1(els){
             els.forEach(function(element){
-                element.style.animation='5s ease-out';
+                element.style.animation='3s ease-out';
                 element.style.animationName='animate-'+element.id+'-in';
             });
             console.log('switching to night mode');
@@ -134,12 +134,12 @@
         }
         function half2(els){
             els.forEach(function(element){
-                element.style.animation='5s ease-in';
+                element.style.animation='3s ease-in';
                 element.style.animationName='animate-'+element.id+'-out';
             });
             setTimeout(function(){
                 moon.style.visibility='hidden';
-            },5000);
+            },3000);
             console.log('switching to day mode');
             moon.style.visibility='none';
             sky.style.backgroundColor='skyblue';
