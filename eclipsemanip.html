@@ -38,6 +38,7 @@
         background-color: slategray;
         animation: none;
         animation-name: animate-moon-in;
+        visibility: hidden;
     }
     @keyframes animate-sky-in{
         from{
@@ -126,6 +127,7 @@
                 element.style.animationName='animate-'+element.id+'-in';
             });
             console.log('switching to night mode');
+            moon.style.visibility='visible';
             moon.style.backgroundColor='black';
             sky.style.backgroundColor='black';
             sun.style.boxShadow='0 0 5em 1em white';
@@ -135,6 +137,9 @@
                 element.style.animation='5s ease-in';
                 element.style.animationName='animate-'+element.id+'-out';
             });
+            setTimeout(function(){
+                moon.style.visibility='hidden';
+            },5000);
             console.log('switching to day mode');
             moon.style.visibility='none';
             sky.style.backgroundColor='skyblue';
