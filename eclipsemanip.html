@@ -18,7 +18,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        animation: 5s ease-out;
+        animation: none;
         animation-name: animate-sky-in;
         position: relative;
         overflow: hidden;
@@ -31,12 +31,12 @@
     }
     .sun{
         background-color: gold;
-        animation: 5s ease-out;
+        animation: none;
         animation-name: animate-sun-in;
     }
     .moon{
         background-color: slategray;
-        animation: 5s ease-out;
+        animation: none;
         animation-name: animate-moon-in;
     }
     @keyframes animate-sky-in{
@@ -123,18 +123,22 @@
         function half1(els){
             els.forEach(function(element){
                 element.style.animation='5s ease-out';
-                element.style.animationName='animate-'+element.id+'-out';
+                element.style.animationName='animate-'+element.id+'-in';
             });
+            console.log('switching to night mode');
             moon.style.backgroundColor='black';
             sky.style.backgroundColor='black';
+            sun.style.boxShadow='0 0 5em 1em white';
         }
         function half2(els){
             els.forEach(function(element){
                 element.style.animation='5s ease-in';
-                element.style.animationName='animate-'+element.id+'-in';
+                element.style.animationName='animate-'+element.id+'-out';
             });
-            moon.style.backgroundColor='slategray';
+            console.log('switching to day mode');
+            moon.style.visibility='none';
             sky.style.backgroundColor='skyblue';
+            sun.style.boxShadow='none';
         }
         function toggleanimation(){
             if(first){
